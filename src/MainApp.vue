@@ -4,16 +4,20 @@ import axios from 'axios';
 import {store} from "./store.js";
 
 import CardApp from './CardApp.vue';
+import LoadApp from './LoadApp.vue'
 
 export default {
   components:{
-    CardApp
+    CardApp,
+    LoadApp,
   },
 
   data(){
     return{
       store,
-      apiSRC : "https://db.ygoprodeck.com/api/v7/cardinfo.php"
+      apiSRC : "https://db.ygoprodeck.com/api/v7/cardinfo.php",
+      load : true,
+
     }
   },
   methods:{
@@ -35,26 +39,34 @@ export default {
       .then(function () {
         // always executed
       });  
+    },
+    
+    endLoad(){
+      this.load = false
     }
   },
 
   created(){
     this.getApi()
+    setTimeout(this.endLoad, 1000)
   }
 }
 </script>
 
 <template>
   <main class="py-5">
-    <div class="container bg-white px-5 pt-5">
+    
+    <LoadApp v-if="load"/>
 
-      <section id="count">
-        <div class="fw-bolder text-white mb-0 ps-3 py-4">Found {{ store.cardsList.length }} cards</div>
-      </section>
+    <div v-else class="container bg-white px-5 pt-5">
 
-      <section id="cards" class="d-flex justify-content-between flex-wrap">
-        <CardApp/>
-      </section>
+        <section id="count">
+          <div class="fw-bolder text-white mb-0 ps-3 py-4">Found {{ store.cardsList.length }} cards</div>
+        </section>
+  
+        <section id="cards" class="d-flex justify-content-between flex-wrap">
+          <CardApp/>
+        </section>
     </div>
   </main>
 </template>
