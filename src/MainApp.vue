@@ -46,8 +46,13 @@ export default {
 
 <template>
   <main class="py-5">
-    <div class="container bg-white">
-      <section id="cards">
+    <div class="container bg-white px-5 pt-5">
+
+      <section id="count">
+        <div class="fw-bolder text-white mb-0 ps-3 py-4">Found {{ store.cardsList.length }} cards</div>
+      </section>
+
+      <section id="cards" class="d-flex justify-content-between flex-wrap">
         <CardApp/>
       </section>
     </div>
@@ -60,6 +65,9 @@ export default {
   main{
     background-color: $gold;
 
+    #count{
+      background-color: $count-color;
+    }
     
   }
 </style>
