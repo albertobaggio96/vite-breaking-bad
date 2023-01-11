@@ -1,6 +1,8 @@
 <script>
 import axios from 'axios';
 
+import {store} from "./store.js";
+
 import CardApp from './CardApp.vue';
 
 export default {
@@ -10,6 +12,7 @@ export default {
 
   data(){
     return{
+      store,
       apiSRC : "https://db.ygoprodeck.com/api/v7/cardinfo.php"
     }
   },
@@ -21,8 +24,10 @@ export default {
           offset : 0
         }
       })
-      .then(function (response) {
-        console.log(response.data);
+      .then((response) => {
+        console.log(response);
+        this.store.cardsList = response.data.data
+        console.log(this.store.cardsList)
       })
       .catch(function (error) {
         console.log(error);
