@@ -20,16 +20,16 @@ export default {
       apiSRC : "https://db.ygoprodeck.com/api/v7/cardinfo.php",
       load : true,
       archetypeList: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
-      archetypeSelected : "alien",
+      
     }
   },
   methods:{
-    getApi(value = "alien"){
+    getApi(value){
       axios.get(this.apiSRC, {
         params: {
-          archetype : value,
           num : 10,
-          offset : 0
+          offset : 0,
+          archetype : value,
         }
       })
       .then((response) => {
@@ -46,7 +46,9 @@ export default {
   },
   
   created(){
-    setTimeout(this.endLoad, 1000)
+    setTimeout(this.endLoad, 1000),
+    this.getApi()
+
   }
 }
 </script>

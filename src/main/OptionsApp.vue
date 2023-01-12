@@ -4,7 +4,7 @@ export default {
 
   data(){
     return{
-      archetypeValue : this.archetypeList[0],
+      archetypeValue : "",
     }
   },
   methods:{
