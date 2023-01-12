@@ -24,7 +24,7 @@ export default {
     }
   },
   methods:{
-    getApi(value){
+    getApi(value = "alien"){
       axios.get(this.apiSRC, {
         params: {
           archetype : value,
@@ -44,9 +44,8 @@ export default {
       this.load = false
     },
   },
-
+  
   created(){
-    this.getApi()
     setTimeout(this.endLoad, 1000)
   }
 }
