@@ -1,5 +1,5 @@
 <script>
-import {store} from "./store.js";
+import {store} from "../store.js";
 
 export default {
   data(){
@@ -19,7 +19,7 @@ export default {
 </template>
 
 <style lang="scss">
-  @use "./styles/partials/variables.scss" as *;
+  @use "../styles/partials/variables.scss" as *;
 
   article{
     width: calc(90% / 5);

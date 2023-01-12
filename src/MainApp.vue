@@ -3,13 +3,15 @@ import axios from 'axios';
 
 import {store} from "./store.js";
 
-import CardApp from './CardApp.vue';
-import LoadApp from './LoadApp.vue'
+import CardApp from './main/CardApp.vue';
+import LoadApp from './main/LoadApp.vue';
+import OptionsApp from './main/OptionsApp.vue';
 
 export default {
   components:{
     CardApp,
     LoadApp,
+    OptionsApp,
   },
 
   data(){
@@ -17,33 +19,30 @@ export default {
       store,
       apiSRC : "https://db.ygoprodeck.com/api/v7/cardinfo.php",
       load : true,
-
+      archetypeList: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
+      archetypeSelected : "alien",
     }
   },
   methods:{
-    getApi(){
+    getApi(value){
       axios.get(this.apiSRC, {
         params: {
+          archetype : value,
           num : 10,
           offset : 0
         }
       })
       .then((response) => {
-        console.log(response);
         this.store.cardsList = response.data.data
-        console.log(this.store.cardsList)
       })
       .catch(function (error) {
         console.log(error);
       })
-      .then(function () {
-        // always executed
-      });  
     },
     
     endLoad(){
       this.load = false
-    }
+    },
   },
 
   created(){
@@ -55,6 +54,8 @@ export default {
 
 <template>
   <main class="py-5">
+   
+    <OptionsApp :archetypeList="archetypeList" @getOptions="getApi"/>
     
     <LoadApp v-if="load"/>
 
