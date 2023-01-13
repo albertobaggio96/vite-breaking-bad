@@ -1,6 +1,6 @@
 <script>
-  import HeaderApp from './HeaderApp.vue';
-  import MainApp from './MainApp.vue';
+  import HeaderApp from './components/HeaderApp.vue';
+  import MainApp from './components/MainApp.vue';
 
   export default {
     components: {

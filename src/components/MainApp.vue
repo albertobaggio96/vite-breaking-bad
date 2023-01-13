@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 
-import {store} from "./store.js";
+import {store} from "../store.js";
 
 import CardApp from './main/CardApp.vue';
 import LoadApp from './main/LoadApp.vue';
@@ -59,7 +59,7 @@ export default {
     <OptionsApp :archetypeList="archetypeList" @getOptions="getApi"/>
     
     <LoadApp v-if="load"/>
-
+        
     <div v-else class="container bg-white px-5 pt-5">
 
         <section id="count">
@@ -74,7 +74,7 @@ export default {
 </template>
 
 <style lang="scss">
-  @use "./styles/partials/variables.scss" as *;
+  @use "../styles/partials/variables" as *;
 
   main{
     background-color: $gold;
